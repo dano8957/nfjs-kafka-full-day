@@ -22,7 +22,12 @@ public class MyProducer {
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
             IntegerSerializer.class);
         properties.put(ProducerConfig.ACKS_CONFIG, "all");
-        properties.put(ProducerConfig.RETRIES_CONFIG, 20);
+        properties.put(ProducerConfig.RETRIES_CONFIG, 50);
+        properties.put(ProducerConfig.RETRY_BACKOFF_MS_CONFIG, 200);
+        properties.put(ProducerConfig.CLIENT_ID_CONFIG, "my_producer");
+        properties.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "lz4");
+        properties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+        properties.put(ProducerConfig.BATCH_SIZE_CONFIG, 5000);
 
         KafkaProducer<String, Integer> producer =
             new KafkaProducer<>(properties);
